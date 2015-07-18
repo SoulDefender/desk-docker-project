@@ -8,7 +8,7 @@
 
 namespace Desk\Estate\Domain\Model\Catalog;
 
-
+use Assert\Assertion;
 use Desk\Estate\Domain\Model\ValueObject;
 
 class Address implements ValueObject

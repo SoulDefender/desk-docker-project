@@ -3,7 +3,6 @@
 
 namespace Desk\Estate\Domain\Model\People;
 
-
 use Assert\Assertion;
 use Desk\Estate\Domain\Model\ValueObject;
 
