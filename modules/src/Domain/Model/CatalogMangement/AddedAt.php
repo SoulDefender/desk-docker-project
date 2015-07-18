@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alexey
- * Date: 15.07.15
- * Time: 20:03
- */
 
 namespace Desk\Estate\Domain\Model\Catalog;
 
@@ -19,6 +13,13 @@ class AddedAt implements ValueObject
     private $hour;
     private $minute;
 
+    /**
+     * @param int $day
+     * @param int $month
+     * @param int $year
+     * @param int $hour
+     * @param int $minute
+     */
     private function __construct(int $day, int $month, int $year, int $hour, int $minute){
         $this->day = $day;
         $this->month = $month;
@@ -29,7 +30,7 @@ class AddedAt implements ValueObject
 
     public static function fromString(string $addedAt){
         $date = explode('.', $addedAt);
-        $time = explode(':', $date[4]);
+        $time = explode(':', $date[3]);
         if(preg_match('/\d+/', $date[0]) !== null &&
             preg_match('/\d+/', $date[1]) !== null &&
             preg_match('/\d+/', $date[2]) !== null &&
@@ -41,7 +42,29 @@ class AddedAt implements ValueObject
         throw new \Exception('Invalid Date');
     }
 
-    public function equals($other){
+    public function toString() {
+        return $this->day . '.' . $this->month . '.' . $this->year . '.' .  $this->hour. ':' . $this->minute;
+    }
 
+    public function __toString() {
+        return $this->day . '.' . $this->month . '.' . $this->year . '.' .  $this->hour. ':' . $this->minute;
+    }
+
+    public function equals($other): bool {
+        if($other === null) {
+            return false;
+        }
+        if(!$other instanceof AddedAt) {
+            return false;
+        }
+        if($other == $this) {
+            return true;
+        }
+        if($this->day != $other->day || $this->month != $other->month ||
+            $this->year != $other->year || $this->hour != $other->hour ||
+            $this->minute != $other->minute) {
+            return false;
+        }
+        return true;
     }
 }

@@ -4,7 +4,9 @@
 namespace Desk\Estate\Domain\Model\StuffManagement;
 
 
-class Employee
+use Desk\Estate\Domain\Model\People\People;
+
+class Employee extends People
 {
 
 }

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alexey
- * Date: 15.07.15
- * Time: 19:39
- */
 
 namespace Desk\Estate\Domain\Model\Catalog;
 
