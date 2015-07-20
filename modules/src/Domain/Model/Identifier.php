@@ -8,23 +8,18 @@ interface Identifier
 {
 
     /**
-     * Create a new Identifier
-     * @return Identifier
-     */
-    public static function generate();
-
-    /**
      * Creates an Identifier from a string
-     * @param $string
+     * @param string $id
      * @return Identifier
      */
-    public static function fromString(string $string);
+    public static function fromString(string $id) : Identifier;
 
     /**
      * Determine equality with another Identifier
+     * @param Identifier $other
      * @return bool
      */
-    public function equals();
+    public function equals(Identifier $other);
 
     /**
      * Return the Identifier as a string

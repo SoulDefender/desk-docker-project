@@ -14,16 +14,25 @@ class FirstName implements ValueObject
      */
     private $value;
 
-
+    /**
+     * @param string $svalue
+     */
     private function __construct(string $value) {
         Assertion::regex($value, '/^[\pL-]+$/u');
         $this->value = $value;
     }
 
-    public static function fromString(string $value) {
+    /**
+     * @param string $value
+     * @return FirstName
+     */
+    public static function fromString(string $value) : FirstName {
         return new FirstName($value);
     }
 
+    /**
+     * @return string
+     */
     public function firstName(): string {
         return $this->value;
     }
@@ -34,16 +43,14 @@ class FirstName implements ValueObject
      */
     public function equals($other) : bool
     {
-        if(!$other instanceof FirstName) {
+        if ( ! $other instanceof FirstName) {
             return false;
         }
 
-        if ($other === null) {
-            return false;
-        }
         if ($other === $this) {
             return true;
         }
-        return strcmp($this->value, $other->value);
+
+        return $this->value === $other->value;
     }
 }

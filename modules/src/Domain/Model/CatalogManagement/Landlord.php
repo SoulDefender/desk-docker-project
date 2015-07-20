@@ -3,8 +3,8 @@
 namespace Desk\Estate\Domain\Model\Catalog;
 
 
+use Desk\Estate\Domain\Model\CatalogManagement\LandlordId;
 use Desk\Estate\Domain\Model\Entity;
-use Desk\Estate\Domain\Model\Identifier;
 use Desk\Estate\Domain\Model\People\Contact;
 
 class Landlord implements Entity
@@ -16,18 +16,18 @@ class Landlord implements Entity
     private $name;
     private $contacts;
 
-    public function __construct(Identifier $id, string $name, Contact $contact) {
+    public function __construct(LandlordId $id, string $name, Contact $contact) {
         $this->id = $id->toString();
         $this->name = $name;
         $this->contacts[] = $contact;
     }
 
     /**
-     * @return Identifier
+     * @return LandlordId
      */
-    public function id()
+    public function id() : LandlordId
     {
-        return Identifier::fromString($this->id);
+        return LandlordId::fromString($this->id);
     }
 
     /**

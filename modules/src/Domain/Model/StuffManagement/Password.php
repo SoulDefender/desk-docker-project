@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Desk\Estate\Domain\Model\StuffManagement;
-
 
 use Assert\Assertion;
 use Desk\Estate\Domain\Model\ValueObject;
@@ -37,16 +35,14 @@ class Password implements ValueObject
      */
     public function equals($other): bool
     {
-        if(!$other instanceof Password) {
+        if ( ! $other instanceof Password) {
             return false;
         }
 
-        if ($other === null) {
-            return false;
-        }
         if ($other === $this) {
             return true;
         }
-        return strcmp($this->value, $other->value);
+
+        return $this->value === $other->value;
     }
 }

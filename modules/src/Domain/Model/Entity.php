@@ -8,7 +8,6 @@ interface Entity
 {
 
     /**
-     *
      * Return the Entity identifier
      * @return Identifier
      */

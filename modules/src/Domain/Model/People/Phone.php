@@ -43,16 +43,15 @@ class Phone implements ValueObject, Contact
      */
     public function equals($other) : bool
     {
-        if(!$other instanceof Phone) {
+        if ( ! $other instanceof Phone) {
             return false;
         }
-        if ($other === null) {
-            return false;
-        }
+
         if ($other === $this) {
             return true;
         }
-        return strcmp($this->value, $other->value);
+
+        return $this->value === $other->value;
     }
 
 }

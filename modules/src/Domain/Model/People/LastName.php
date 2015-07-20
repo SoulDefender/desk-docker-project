@@ -40,16 +40,13 @@ class LastName implements ValueObject
      */
     public function equals($other) : bool
     {
-        if(!$other instanceof LastName) {
+        if ( ! $other instanceof LastName) {
             return false;
         }
 
-        if ($other === null) {
-            return false;
-        }
         if ($other === $this) {
             return true;
         }
-        return strcmp($this->value, $other->value);
+        return $this->value === $other->value;
     }
 }

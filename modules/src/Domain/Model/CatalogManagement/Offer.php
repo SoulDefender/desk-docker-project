@@ -4,8 +4,9 @@
 namespace Desk\Estate\Domain\Model\Catalog;
 
 
+use Desk\Estate\Domain\Model\CatalogManagement\OfferId;
+use Desk\Estate\Domain\Model\CatalogViewing\Image;
 use Desk\Estate\Domain\Model\Entity;
-use Desk\Estate\Domain\Model\Identifier;
 
 class Offer implements Entity
 {
@@ -49,19 +50,23 @@ class Offer implements Entity
      * @param AddedAt $addedAt
      * @param $state
      */
-    private function __construct(int $area,
-                                    int $roomCount,
-                                    $type,
-                                    Price $price,
-                                    $orderType,
-                                    Address $address,
-                                    $equipment,
-                                    $images,
-                                    $landlord,
-                                    $description,
-                                    AddedAt $addedAt,
-                                    $state)
+    private function __construct(
+        OfferId $id,
+        int $area,
+        int $roomCount,
+        $type,
+        Price $price,
+        $orderType,
+        Address $address,
+        $equipment,
+        $images,
+        $landlord,
+        $description,
+        AddedAt $addedAt,
+        $state
+    )
     {
+        $this->id = $id->toString();
         $this->area = $area;
         $this->roomCount = $roomCount;
         $this->type = $type;
@@ -133,11 +138,19 @@ class Offer implements Entity
     }
 
     /**
-     * @param mixed $images
+     * @param array $images
      */
     public function setImages($images)
     {
         $this->images = $images;
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function addImage(Image $image)
+    {
+        $this->images[] = $image;
     }
 
     /**
@@ -172,8 +185,11 @@ class Offer implements Entity
         $this->state = $state;
     }
 
-    public function id() : Identifier{
-        return Identifier::fromString($this->id);
+    /**
+     * @return OfferId
+     */
+    public function id() : OfferId{
+        return OfferId::fromString($this->id);
     }
 
     /**
@@ -225,7 +241,7 @@ class Offer implements Entity
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function equipments()
     {
@@ -233,7 +249,7 @@ class Offer implements Entity
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function images()
     {
@@ -241,7 +257,7 @@ class Offer implements Entity
     }
 
     /**
-     * @return mixed
+     * @return Landlord
      */
     public function landlord()
     {
@@ -249,7 +265,7 @@ class Offer implements Entity
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function description()
     {
@@ -271,7 +287,5 @@ class Offer implements Entity
     {
         return $this->state;
     }
-
-
 
 }

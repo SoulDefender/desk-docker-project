@@ -15,8 +15,8 @@ class Login implements ValueObject
      */
     private $value;
 
-
-    private function __construct(string $value) {
+    private function __construct(string $value)
+    {
         Assertion::minLength($value, 6);
         Assertion::regex($value, '/^[\pL\pN\pM]+$/');
         $this->value = $value;
@@ -27,7 +27,8 @@ class Login implements ValueObject
      * @param string $value
      * @return Login
      */
-    public static function fromString(string $value) {
+    public static function fromString(string $value)
+    {
         return new Login($value);
     }
 
@@ -37,15 +38,14 @@ class Login implements ValueObject
      */
     public function equals($other): bool
     {
-        if(!$other instanceof Login) {
+        if ( ! $other instanceof Login) {
             return false;
         }
-        if ($other === null) {
-            return false;
-        }
+
         if ($other === $this) {
             return true;
         }
-        return strcmp($this->value, $other->value);
+
+        return $this->value === $other->value;
     }
 }
